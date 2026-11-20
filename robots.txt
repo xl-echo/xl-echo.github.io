@@ -67,3 +67,4 @@ Allow: /
 # 站点索引
 Sitemap: https://xl-echo.github.io/sitemap.xml
 # AI 友好索引（llms.txt 约定）：https://xl-echo.github.io/llms.txt
+# RSS 订阅：https://xl-echo.github.io/feed.xml

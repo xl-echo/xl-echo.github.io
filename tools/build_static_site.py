@@ -289,6 +289,8 @@ def head(title, desc, canonical, keywords, og_image=None, jsonld=None, home='./'
 {{OG_IMAGE}}
 {{ALT_MD}}
 {{VERIFY}}
+<link rel="alternate" type="application/rss+xml" title="草本生长观察" href="{{SITE}}/feed.xml">
+<link rel="alternate" type="application/feed+json" title="草本生长观察" href="{{SITE}}/feed.json">
 <link rel="icon" href="{{FAVICON}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -298,7 +300,7 @@ def head(title, desc, canonical, keywords, og_image=None, jsonld=None, home='./'
 {{JSONLD}}
 </head>""".replace('{{TITLE}}', htmllib.escape(title)).replace('{{DESC}}', htmllib.escape(desc)) \
         .replace('{{KEYWORDS}}', htmllib.escape(keywords)).replace('{{CANONICAL}}', canonical) \
-        .replace('{{OG_IMAGE}}', og_img).replace('{{ALT_MD}}', alt).replace('{{FAVICON}}', FAVICON).replace('{{JS_BASE}}', js_base).replace('{{VERIFY}}', verify_metas()) \
+        .replace('{{OG_IMAGE}}', og_img).replace('{{ALT_MD}}', alt).replace('{{FAVICON}}', FAVICON).replace('{{JS_BASE}}', js_base).replace('{{VERIFY}}', verify_metas()).replace('{{SITE}}', SITE) \
         .replace('{{STYLE}}', '{{__STYLE__}}').replace('{{JSONLD}}', ld)
 
 
@@ -603,6 +605,56 @@ def main():
     open(os.path.join(BASE, 'llms-full.txt'), 'w', encoding='utf-8', newline='').write('\n'.join(full))
     print('生成 llms-full.txt')
 
+    # ---- RSS / JSON Feed（内容聚合与 AI 抓取的入口）----
+    from email.utils import format_datetime
+    from datetime import datetime, timezone
+    items = []
+    jitems = []
+    for a in arts:
+        link = '%s/article/%s.html' % (SITE, a['slug'])
+        try:
+            dt = datetime.strptime(a['date'], '%Y-%m-%d').replace(tzinfo=timezone.utc)
+            pub = format_datetime(dt)
+        except Exception:
+            pub = ''
+        desc = re.sub(r'\*\*', '', a['summary'])
+        items.append(
+            '    <item>\n'
+            '      <title>%s</title>\n'
+            '      <link>%s</link>\n'
+            '      <guid isPermaLink="true">%s</guid>\n'
+            '      <pubDate>%s</pubDate>\n'
+            '      <description>%s</description>\n'
+            '    </item>' % (htmllib.escape(a['title']), link, link, pub, htmllib.escape(desc)))
+        jitems.append({
+            'id': link, 'url': link, 'title': a['title'], 'summary': desc,
+            'date_published': a['date'] + 'T00:00:00Z',
+        })
+    rss = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+           '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+           '  <channel>\n'
+           '    <title>草本生长观察</title>\n'
+           '    <link>%s/</link>\n'
+           '    <atom:link href="%s/feed.xml" rel="self" type="application/rss+xml"/>\n'
+           '    <description>以「形态 → 气机 → 功效」的方法论记录本草植物的观察笔记</description>\n'
+           '    <language>zh-CN</language>\n'
+           '%s\n'
+           '  </channel>\n'
+           '</rss>\n') % (SITE, SITE, '\n'.join(items))
+    open(os.path.join(BASE, 'feed.xml'), 'w', encoding='utf-8', newline='').write(rss)
+    jfeed = {
+        'version': 'https://jsonfeed.org/version/1.1',
+        'title': '草本生长观察',
+        'home_page_url': SITE + '/',
+        'feed_url': SITE + '/feed.json',
+        'description': '以「形态 → 气机 → 功效」的方法论记录本草植物的观察笔记',
+        'language': 'zh-CN',
+        'items': jitems,
+    }
+    open(os.path.join(BASE, 'feed.json'), 'w', encoding='utf-8', newline='').write(
+        json.dumps(jfeed, ensure_ascii=False, indent=1))
+    print('生成 feed.xml / feed.json（%d 条）' % len(jitems))
+
     # ---- robots：显式放行主流 AI 爬虫 + 声明站点地图 ----
     ai_bots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web',
                'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended',
@@ -615,7 +667,8 @@ def main():
         lines += ['User-agent: %s' % b, 'Allow: /', '']
     lines += ['# 站点索引',
               'Sitemap: %s/sitemap.xml' % SITE,
-              '# AI 友好索引（llms.txt 约定）：%s/llms.txt' % SITE, '']
+              '# AI 友好索引（llms.txt 约定）：%s/llms.txt' % SITE,
+              '# RSS 订阅：%s/feed.xml' % SITE, '']
     open(os.path.join(BASE, 'robots.txt'), 'w', encoding='utf-8', newline='').write('\n'.join(lines))
     print('生成 robots.txt（含 AI 爬虫规则）')
 
