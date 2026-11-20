@@ -1,0 +1,23 @@
+# 草本生长观察
+
+> 以「形态 → 气机 → 功效」的方法论记录本草植物的观察笔记，每篇聚焦一味植物，
+> 从根、茎、叶、花、果的形态与生长节律推演其气机偏性。
+
+本站为纯文本可读的静态站点，所有正文均可直接抓取，无需执行 JavaScript。
+每篇文章同时提供 Markdown 纯文本版（见各条目 md 链接），便于模型直接引用。
+
+## 文章
+- [虎杖：根黄茎斑花白，火气透出体表后化为寒](https://caoben-guancha.pages.dev/article/huzhang.html) — 地下根茎切面黄，地上茎秆绿兼红斑，顶梢花淡绿近白——三种颜色排在同一条路上，是火从郁结到透尽的全过程。（2026-11-03）｜纯文本：https://caoben-guancha.pages.dev/md/huzhang.md
+- [生长习性在敛藏，积累辛甘之味向外开散，将发未发即是防御的禀赋，也是防风的取象依据](https://caoben-guancha.pages.dev/article/fangfeng.html) — 防风生长的前一两年只生出贴地的莲座基生叶，不会向上抽生花茎，直根持续向下深扎，精气尽数收蓄于根茎之内。……（2026-10-21）｜纯文本：https://caoben-guancha.pages.dev/md/fangfeng.md
+- [外壳褐韧，果肉莹白包裹黑核，一颗龙眼，正是本草里安神补脾的灵果](https://caoben-guancha.pages.dev/article/longyan.html) — 性味：甘、温，归心、脾经，核心功效四个字：补益心脾……（2026-10-19）｜纯文本：https://caoben-guancha.pages.dev/md/longyan.md
+- [湿漫周身用大叶，下焦固结小车前——车前的选用区分](https://caoben-guancha.pages.dev/article/cheqian.html) — 大叶车前，短缩根茎居于地表，不向下伸长；根茎之下，生出丛生细密须根，横向铺展于浅层湿土，如无数细管网，横向向四周延展……（2026-10-15）｜纯文本：https://caoben-guancha.pages.dev/md/cheqian.md
+- [喜阳根深、秋熟籽藏，补骨脂从光照、根系、种子再说气机直入下焦](https://caoben-guancha.pages.dev/article/buguzhi.html) — 生得阳、扎得深、裹得密、结得晚、藏得住，黑又归肾——这几条同指一处：它的气不走表、不发散，一路向下向内，终点在肾。……（2026-10-12）｜纯文本：https://caoben-guancha.pages.dev/md/buguzhi.md
+- [借秋金肃降之力，于淤泥中迅速降敛阴精成球——荸荠](https://caoben-guancha.pages.dev/article/biqi.html) — 荸荠地上茎秆中空笔直、没有分支，没有多余旁枝分流气机与养分，形成一条纯粹通畅的上下传导通路……（2026-10-11）｜纯文本：https://caoben-guancha.pages.dev/md/biqi.md
+- [吃了枸杞腰疼?是补药也会让你不适。扦插枸杞敛藏能力先天不足，生发足够却反拔肾阴](https://caoben-guancha.pages.dev/article/gouqi.html) — 果实味甘、色红，甘味入脾，能补益中焦、化生气血津液，为肝肾提供后天滋养根基，缓和滋补药性而不峻猛；色红入血入心、走肝……（2026-10-10）｜纯文本：https://caoben-guancha.pages.dev/md/gouqi.md
+- [尖刺敛气机，深根承土性，不仅健脾还能补肾的野果——板栗](https://caoben-guancha.pages.dev/article/banli.html) — 板栗植株直根向下深扎，侧根亦向四方土层纵深延展，整株根系深伏厚土，禀赋土层敦厚持重的土性；果实外层密布尖刺皮毛……（2026-10-09）｜纯文本：https://caoben-guancha.pages.dev/md/banli.md
+- [从开花到凋零，整个生命周期都在从内撑开外层包裹，破结开郁本是生命本象——芭蕉心](https://caoben-guancha.pages.dev/article/bajiaoxin.html) — 芭蕉花自蕉秆中心抽生，花苞一反诸花向上舒展之常态，整序垂坠向下，紫褐佛焰苞片层层次第开放，花瓣藏于其内，味甘而带微辛……（2026-10-05）｜纯文本：https://caoben-guancha.pages.dev/md/bajiaoxin.md
+
+## 说明
+- 内容性质：传统文化与植物形态观察笔记，不构成诊疗建议
+- 站点地图：https://caoben-guancha.pages.dev/sitemap.xml
+- 全文合集：https://caoben-guancha.pages.dev/llms-full.txt

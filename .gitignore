@@ -1,0 +1,27 @@
+# 本地工具依赖 / 构建产物
+.cf/
+node_modules/
+dist/
+tcm-essays-site.zip
+
+# 临时与内部文件
+live_index.html
+dom_*.html
+*.log
+.workbuddy/
+.wbapp_*.genie
+
+# 与本网站无关的其它项目文件
+tmp-pdf/
+fin_product_config_每小时产品配置方案.md
+退汇每日对账_代码落地说明.md
+虎杖法象药理.md
+test_vore2.py
+tools/*.sh
+tools/*.txt
+tools/*.tsv
+tools/*.yml
+
+# 系统文件
+.DS_Store
+Thumbs.db
