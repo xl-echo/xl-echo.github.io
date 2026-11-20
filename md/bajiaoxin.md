@@ -1,7 +1,7 @@
 # 从开花到凋零，整个生命周期都在从内撑开外层包裹，破结开郁本是生命本象——芭蕉心
 
 > 来源：草本生长观察 · 2026-10-05
-> 原文：https://caoben-guancha.pages.dev/article/bajiaoxin.html
+> 原文：https://xl-echo.github.io/article/bajiaoxin.html
 > 发布日期：2026-10-05
 
 ---

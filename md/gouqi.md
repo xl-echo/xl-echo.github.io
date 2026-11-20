@@ -1,7 +1,7 @@
 # 吃了枸杞腰疼?是补药也会让你不适。扦插枸杞敛藏能力先天不足，生发足够却反拔肾阴
 
 > 来源：草本生长观察 · 2026-10-10
-> 原文：https://caoben-guancha.pages.dev/article/gouqi.html
+> 原文：https://xl-echo.github.io/article/gouqi.html
 > 发布日期：2026-10-10
 
 ---

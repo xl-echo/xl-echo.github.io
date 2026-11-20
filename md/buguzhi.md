@@ -1,7 +1,7 @@
 # 喜阳根深、秋熟籽藏，补骨脂从光照、根系、种子再说气机直入下焦
 
 > 来源：草本生长观察 · 2026-10-12
-> 原文：https://caoben-guancha.pages.dev/article/buguzhi.html
+> 原文：https://xl-echo.github.io/article/buguzhi.html
 > 发布日期：2026-10-12
 
 ---

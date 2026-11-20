@@ -1,7 +1,7 @@
 # 外壳褐韧，果肉莹白包裹黑核，一颗龙眼，正是本草里安神补脾的灵果
 
 > 来源：草本生长观察 · 2026-10-19
-> 原文：https://caoben-guancha.pages.dev/article/longyan.html
+> 原文：https://xl-echo.github.io/article/longyan.html
 > 发布日期：2026-10-19
 
 ---

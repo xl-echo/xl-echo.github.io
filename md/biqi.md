@@ -1,7 +1,7 @@
 # 借秋金肃降之力，于淤泥中迅速降敛阴精成球——荸荠
 
 > 来源：草本生长观察 · 2026-10-11
-> 原文：https://caoben-guancha.pages.dev/article/biqi.html
+> 原文：https://xl-echo.github.io/article/biqi.html
 > 发布日期：2026-10-11
 
 ---
