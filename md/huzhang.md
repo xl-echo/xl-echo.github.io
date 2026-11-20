@@ -1,7 +1,7 @@
 # 虎杖：根黄茎斑花白，火气透出体表后化为寒
 
 > 来源：草本生长观察 · 2026-11-03
-> 原文：https://xl-echo.github.io/article/huzhang.html
+> 原文：https://caoben-guancha.pages.dev/article/huzhang
 > 发布日期：2026-11-03
 
 ---

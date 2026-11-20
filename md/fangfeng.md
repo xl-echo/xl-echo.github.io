@@ -1,7 +1,7 @@
 # 生长习性在敛藏，积累辛甘之味向外开散，将发未发即是防御的禀赋，也是防风的取象依据
 
 > 来源：草本生长观察 · 2026-10-21
-> 原文：https://xl-echo.github.io/article/fangfeng.html
+> 原文：https://caoben-guancha.pages.dev/article/fangfeng
 > 发布日期：2026-10-21
 
 ---

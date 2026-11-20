@@ -99,7 +99,7 @@ def inline(text):
 COMMON_JS = r"""
 <script>
 const PUBLIC_CONFIG = {
-  endpoint: 'https://tcm-essays.app.workbuddy.host',
+  endpoint: __ENDPOINT__,
   oauthRelayBaseUrl: 'https://www.workbuddy.cn/v2/as/genie-baas/oauth',
   publishableKey: 'wbpk_EIsoihXP3ZYjkKInTKBILH_TLGA16wfGCVb5UbnKijw7UymOM4vXoN5'
 };
@@ -309,7 +309,7 @@ def build_article(a, md, style, prev_a, next_a):
     desc = re.sub(r'\*\*', '', a['summary'])[:120]
     herb = a['title'].split('：')[0].split('——')[0][:8]
     keywords = '%s,中药,本草,法象药理,植物之象,形态气机' % herb
-    canonical = '%s/article/%s.html' % (SITE, a['slug'])
+    canonical = '%s/article/%s' % (SITE, a['slug'])
     hero_abs = ('%s/%s' % (SITE, a['hero'])) if a['hero'] else None
     jsonld = (
         '{"@context":"https://schema.org","@type":"Article",'
@@ -535,6 +535,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return page
 
 
+CLOUD_ENDPOINT = (SITE + '/cloud-proxy') if os.environ.get('CLOUD_PROXY') == '1' else 'https://tcm-essays.app.workbuddy.host'
+
+
 def main():
     style, arts, mds = read_source()
     os.makedirs(os.path.join(BASE, 'article'), exist_ok=True)
@@ -544,16 +547,17 @@ def main():
         next_a = arts[idx + 1] if idx + 1 < len(arts) else None
         html = build_article(a, mds[a['slug']], style, prev_a, next_a)
         html = html.replace('{{__STYLE__}}', style)
+        html = html.replace('__ENDPOINT__', "'%s'" % CLOUD_ENDPOINT)
         open(os.path.join(BASE, 'article', a['slug'] + '.html'), 'w', encoding='utf-8', newline='').write(html)
         print('生成 article/%s.html' % a['slug'])
     # 首页
-    home = build_home(arts, style).replace('{{__STYLE__}}', style)
+    home = build_home(arts, style).replace('{{__STYLE__}}', style).replace('__ENDPOINT__', "'%s'" % CLOUD_ENDPOINT)
     open(SRC, 'w', encoding='utf-8', newline='').write(home)
     print('生成 index.html')
     # sitemap
     urls = ['  <url><loc>%s/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>' % SITE]
     for a in arts:
-        urls.append('  <url><loc>%s/article/%s.html</loc><lastmod>%s</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>'
+        urls.append('  <url><loc>%s/article/%s</loc><lastmod>%s</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>'
                     % (SITE, a['slug'], a['date']))
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -565,7 +569,7 @@ def main():
     os.makedirs(md_dir, exist_ok=True)
     for a in arts:
         md = mds[a['slug']].strip()
-        head_md = ('# %s\n\n> 来源：草本生长观察 · %s\n> 原文：%s/article/%s.html\n> 发布日期：%s\n\n---\n\n'
+        head_md = ('# %s\n\n> 来源：草本生长观察 · %s\n> 原文：%s/article/%s\n> 发布日期：%s\n\n---\n\n'
                    % (a['title'], a['date'], SITE, a['slug'], a['date']))
         open(os.path.join(md_dir, a['slug'] + '.md'), 'w', encoding='utf-8', newline='').write(head_md + md + '\n')
     print('生成 md/ 纯文本镜像 %d 篇' % len(arts))
@@ -584,7 +588,7 @@ def main():
             one = one[:cut + 1]
         if len(raw) > len(one):
             one = one.rstrip('，；—') + '……'
-        llms.append('- [%s](%s/article/%s.html) — %s（%s）｜纯文本：%s/md/%s.md'
+        llms.append('- [%s](%s/article/%s) — %s（%s）｜纯文本：%s/md/%s.md'
                     % (a['title'], SITE, a['slug'], one, a['date'], SITE, a['slug']))
     llms += ['', '## 说明',
              '- 内容性质：传统文化与植物形态观察笔记，不构成诊疗建议',
@@ -598,7 +602,7 @@ def main():
     for a in arts:
         full.append('=' * 60)
         full.append('## %s' % a['title'])
-        full.append('原文：%s/article/%s.html ｜ 发布日期：%s' % (SITE, a['slug'], a['date']))
+        full.append('原文：%s/article/%s ｜ 发布日期：%s' % (SITE, a['slug'], a['date']))
         full.append('')
         full.append(mds[a['slug']].strip())
         full.append('')
@@ -611,7 +615,7 @@ def main():
     items = []
     jitems = []
     for a in arts:
-        link = '%s/article/%s.html' % (SITE, a['slug'])
+        link = '%s/article/%s' % (SITE, a['slug'])
         try:
             dt = datetime.strptime(a['date'], '%Y-%m-%d').replace(tzinfo=timezone.utc)
             pub = format_datetime(dt)

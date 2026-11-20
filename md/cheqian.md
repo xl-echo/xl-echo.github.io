@@ -1,7 +1,7 @@
 # 湿漫周身用大叶，下焦固结小车前——车前的选用区分
 
 > 来源：草本生长观察 · 2026-10-15
-> 原文：https://xl-echo.github.io/article/cheqian.html
+> 原文：https://caoben-guancha.pages.dev/article/cheqian
 > 发布日期：2026-10-15
 
 ---

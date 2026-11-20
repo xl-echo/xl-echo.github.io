@@ -9,7 +9,7 @@ PASS=0; FAIL=0
 check() { # $1=描述 $2=期望 $3...=curl参数
   local desc="$1" expect="$2"; shift 2
   local code
-  code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "$@")
+  code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 25 "$@")
   if [ "$code" = "$expect" ]; then
     printf "  ✓ %-42s %s\n" "$desc" "$code"; PASS=$((PASS+1))
   else

@@ -65,6 +65,6 @@ User-agent: Sogou web spider
 Allow: /
 
 # 站点索引
-Sitemap: https://xl-echo.github.io/sitemap.xml
-# AI 友好索引（llms.txt 约定）：https://xl-echo.github.io/llms.txt
-# RSS 订阅：https://xl-echo.github.io/feed.xml
+Sitemap: https://caoben-guancha.pages.dev/sitemap.xml
+# AI 友好索引（llms.txt 约定）：https://caoben-guancha.pages.dev/llms.txt
+# RSS 订阅：https://caoben-guancha.pages.dev/feed.xml

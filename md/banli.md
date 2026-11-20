@@ -1,7 +1,7 @@
 # 尖刺敛气机，深根承土性，不仅健脾还能补肾的野果——板栗
 
 > 来源：草本生长观察 · 2026-10-09
-> 原文：https://xl-echo.github.io/article/banli.html
+> 原文：https://caoben-guancha.pages.dev/article/banli
 > 发布日期：2026-10-09
 
 ---
