@@ -242,6 +242,29 @@ AD_TPL = """<div class="ad-float" id="ad-float">
 FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%239c3a3a'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23ffffff' font-family='Songti SC, SimSun, serif' font-weight='600'%3E%E8%8D%89%3C/text%3E%3C/svg%3E"
 
 
+def verify_metas():
+    """站长平台验证标签：把验证码写进 tools/verify.json 即可自动注入所有页面。"""
+    fp = os.path.join(BASE, 'tools', 'verify.json')
+    if not os.path.exists(fp):
+        return ''
+    try:
+        cfg = json.load(open(fp, encoding='utf-8'))
+    except Exception:
+        return ''
+    out = []
+    if cfg.get('baidu'):
+        out.append('<meta name="baidu-site-verification" content="%s">' % cfg['baidu'])
+    if cfg.get('google'):
+        out.append('<meta name="google-site-verification" content="%s">' % cfg['google'])
+    if cfg.get('bing'):
+        out.append('<meta name="msvalidate.01" content="%s">' % cfg['bing'])
+    if cfg.get('sogou'):
+        out.append('<meta name="sogou_site_verification" content="%s">' % cfg['sogou'])
+    if cfg.get('360'):
+        out.append('<meta name="360-site-verification" content="%s">' % cfg['360'])
+    return ''.join(out)
+
+
 def head(title, desc, canonical, keywords, og_image=None, jsonld=None, home='./', alt_md=None, extra_ld=None, js_base='./'):
     og_img = ('<meta property="og:image" content="%s">' % og_image) if og_image else ''
     ld = ('<script type="application/ld+json">%s</script>' % jsonld) if jsonld else ''
@@ -265,6 +288,7 @@ def head(title, desc, canonical, keywords, og_image=None, jsonld=None, home='./'
 <meta property="og:url" content="{{CANONICAL}}">
 {{OG_IMAGE}}
 {{ALT_MD}}
+{{VERIFY}}
 <link rel="icon" href="{{FAVICON}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -274,7 +298,7 @@ def head(title, desc, canonical, keywords, og_image=None, jsonld=None, home='./'
 {{JSONLD}}
 </head>""".replace('{{TITLE}}', htmllib.escape(title)).replace('{{DESC}}', htmllib.escape(desc)) \
         .replace('{{KEYWORDS}}', htmllib.escape(keywords)).replace('{{CANONICAL}}', canonical) \
-        .replace('{{OG_IMAGE}}', og_img).replace('{{ALT_MD}}', alt).replace('{{FAVICON}}', FAVICON).replace('{{JS_BASE}}', js_base) \
+        .replace('{{OG_IMAGE}}', og_img).replace('{{ALT_MD}}', alt).replace('{{FAVICON}}', FAVICON).replace('{{JS_BASE}}', js_base).replace('{{VERIFY}}', verify_metas()) \
         .replace('{{STYLE}}', '{{__STYLE__}}').replace('{{JSONLD}}', ld)
 
 
