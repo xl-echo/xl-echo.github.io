@@ -17,6 +17,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -53,8 +54,9 @@ def find_date(html):
     return datetime.now().strftime('%Y-%m-%d')
 
 
-def parse_article(url, slug):
-    html = fetch(url).decode('utf-8', 'replace')
+def parse_article(url, slug, html=None):
+    if html is None:
+        html = fetch(url).decode('utf-8', 'replace')
     if 'js_content' not in html:
         raise RuntimeError('未取到正文（可能被反爬拦截）')
     title = meta_of(html, 'og:title') or '无标题'
@@ -125,12 +127,19 @@ def main():
 
     for idx, url in enumerate(urls):
         print('抓取 %s' % url)
-        try:
-            probe = fetch(url).decode('utf-8', 'replace')
-            title = meta_of(probe, 'og:title') or '无标题'
-        except Exception as e:
-            print('  失败:', str(e)[:80])
+        probe = None
+        for attempt in range(2):
+            try:
+                probe = fetch(url).decode('utf-8', 'replace')
+                if 'js_content' in probe:
+                    break
+            except Exception as e:
+                print('  第%d次抓取失败: %s' % (attempt + 1, str(e)[:60]))
+            time.sleep(2)
+        if not probe or 'js_content' not in probe:
+            print('  失败: 未取到正文')
             continue
+        title = meta_of(probe, 'og:title') or '无标题'
         if title in {a['title'] for a in arts}:
             print('  已存在，跳过：%s' % title[:30])
             continue
@@ -141,7 +150,7 @@ def main():
         else:
             slug = make_slug(title, existing)
         try:
-            art = parse_article(url, slug)
+            art = parse_article(url, slug, probe)
         except Exception as e:
             print('  失败:', str(e)[:80])
             continue

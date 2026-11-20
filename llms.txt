@@ -7,7 +7,10 @@
 每篇文章同时提供 Markdown 纯文本版（见各条目 md 链接），便于模型直接引用。
 
 ## 文章
+- [不落不腐：从挂藏之久看红枣的固守之力](https://caoben-guancha.pages.dev/article/hongzao) — 枣树坐果之后，枣实并不骤然膨大。根叶所化的精微沿枣吊一线缓缓上送，日有所积，才渐次凝成枣实。……（2026-11-18）｜纯文本：https://caoben-guancha.pages.dev/md/hongzao.md
+- [生发之春结果，开散之夏敛藏，解极阳之火大肆开散、升腾——折亢盛阳火的黄连](https://caoben-guancha.pages.dev/article/huanglian) — 生发之春结果，开散之夏敛藏。黄连于早春春气生发之时，便完成开花、坐果、孕育种子这一生殖之事……（2026-11-12）｜纯文本：https://caoben-guancha.pages.dev/md/huanglian.md
 - [虎杖：根黄茎斑花白，火气透出体表后化为寒](https://caoben-guancha.pages.dev/article/huzhang) — 地下根茎切面黄，地上茎秆绿兼红斑，顶梢花淡绿近白——三种颜色排在同一条路上，是火从郁结到透尽的全过程。（2026-11-03）｜纯文本：https://caoben-guancha.pages.dev/md/huzhang.md
+- [从深根向上朝外开花，从高处向内向下开路降阳，黄芩的气机藏在根的空腔和单侧绽放的花朵里](https://caoben-guancha.pages.dev/article/huangqin) — 其根茎为直根向下延展，年份越长根茎中心的空腔越大，根茎整体呈现黄色，遇水则变绿。顶部光合作用，吸引阳气下行……（2026-11-03）｜纯文本：https://caoben-guancha.pages.dev/md/huangqin.md
 - [生长习性在敛藏，积累辛甘之味向外开散，将发未发即是防御的禀赋，也是防风的取象依据](https://caoben-guancha.pages.dev/article/fangfeng) — 防风生长的前一两年只生出贴地的莲座基生叶，不会向上抽生花茎，直根持续向下深扎，精气尽数收蓄于根茎之内。……（2026-10-21）｜纯文本：https://caoben-guancha.pages.dev/md/fangfeng.md
 - [外壳褐韧，果肉莹白包裹黑核，一颗龙眼，正是本草里安神补脾的灵果](https://caoben-guancha.pages.dev/article/longyan) — 性味：甘、温，归心、脾经，核心功效四个字：补益心脾……（2026-10-19）｜纯文本：https://caoben-guancha.pages.dev/md/longyan.md
 - [湿漫周身用大叶，下焦固结小车前——车前的选用区分](https://caoben-guancha.pages.dev/article/cheqian) — 大叶车前，短缩根茎居于地表，不向下伸长；根茎之下，生出丛生细密须根，横向铺展于浅层湿土，如无数细管网，横向向四周延展……（2026-10-15）｜纯文本：https://caoben-guancha.pages.dev/md/cheqian.md
