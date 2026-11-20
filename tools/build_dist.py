@@ -6,7 +6,7 @@ import shutil
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(BASE, 'dist')
 
-FILES = ['index.html', 'robots.txt', 'sitemap.xml', 'llms.txt', 'llms-full.txt']
+FILES = ['index.html', 'robots.txt', 'sitemap.xml', 'llms.txt', 'llms-full.txt', 'feed.xml', 'feed.json']
 DIRS = ['article', 'md', 'images', 'js']
 
 
