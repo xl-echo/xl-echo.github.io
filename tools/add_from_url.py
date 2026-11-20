@@ -82,7 +82,7 @@ def parse_article(url, slug, html=None):
             except Exception as e:
                 print('  图片下载失败:', str(e)[:60])
                 continue
-        mapping[iu] = 'images/' + fname
+        mapping[iu] = './images/' + fname
 
     blocks = []
     for t, c in p.blocks:

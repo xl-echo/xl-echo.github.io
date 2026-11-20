@@ -50,9 +50,11 @@ def md_to_html(md):
         m = re.match(r'^!\[([^\]]*)\]\(([^)]+)\)$', line.strip())
         if m:
             alt = m.group(1) or '配图'
-            url = m.group(2)
+            url = m.group(2).strip()
             if url.startswith('./'):
-                url = '../' + url[2:]
+                url = url[2:]
+            if not url.startswith(('http://', 'https://', '//', '../', 'data:')):
+                url = '../' + url
             out.append('<img src="%s" alt="%s" loading="lazy">' % (url, htmllib.escape(alt)))
             i += 1
             continue
@@ -429,6 +431,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>"""
+    # 题图已在顶部展示，正文中的同一张图去掉，避免重复
+    if a['hero']:
+        body_html = re.sub(r'<img src="\.\./%s"[^>]*>\s*' % re.escape(a['hero']), '', body_html, count=1)
     hero_tpl = ('<img class="article-hero" src="../%s" alt="%s">' % (a['hero'], htmllib.escape(a['title']))) if a['hero'] else ''
     page = page.replace('{{HERO}}', hero_tpl).replace('{{DATE}}', a['date']) \
         .replace('{{H1}}', htmllib.escape(a['title'])).replace('{{BODY}}', body_html) \
@@ -685,6 +690,19 @@ def main():
     if missing:
         raise SystemExit('构建失败：以下页面缺少云 SDK 引用 -> %s' % ', '.join(missing))
     print('自检通过：全部页面已引用云 SDK')
+
+    # ---- 图片完整性自检：文章页引用的本地图片必须存在 ----
+    import re as _re
+    missing_img = []
+    for a in arts:
+        fp = os.path.join(BASE, 'article', a['slug'] + '.html')
+        html_txt = open(fp, encoding='utf-8').read()
+        for src in _re.findall(r'<img[^>]+src="\.\./([^"]+)"', html_txt):
+            if not os.path.exists(os.path.join(BASE, src)):
+                missing_img.append((a['slug'], src))
+    if missing_img:
+        raise SystemExit('构建失败：文章页引用了不存在的图片 -> %s' % missing_img[:5])
+    print('自检通过：文章页图片路径全部有效')
 
 
 if __name__ == '__main__':
