@@ -90,6 +90,13 @@ text-decoration:none;border-radius:.35rem;font-size:.88rem;letter-spacing:.1em}
     open(os.path.join(DIST, '404.html'), 'w', encoding='utf-8', newline='').write(notfound)
     print('  + 404.html (自定义错误页)')
 
+    # IndexNow 密钥文件（引擎校验站点归属）
+    for f in os.listdir(BASE):
+        if f.endswith('.txt') and len(f) == 36 and f.count('.') == 1:
+            shutil.copy2(os.path.join(BASE, f), os.path.join(DIST, f))
+            print('  + %s (IndexNow 密钥)' % f)
+            break
+
     total = sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(DIST) for f in fs)
     print('dist/ 完成，共 %.1f MB' % (total / 1024 / 1024))
 
